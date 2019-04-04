@@ -72,7 +72,7 @@ $page_name = 'data_list'
            
 
             
-            <button type="submit" class="btn d-flex mx-auto btn-outline-info search_btn  col-1">搜尋</button>
+            <button type="submit" class="btn d-flex mx-auto btn-outline-info search_btn ">搜尋</button>
             
 
             </div>
@@ -96,7 +96,12 @@ $page_name = 'data_list'
                 <thead>
                     <tr>
                         <th scope="col">修改</th>
-                        <th scope="col">#</th>
+                        <th scope="col">排序
+                            <div id="sort">
+                                <i class="fas fa-sort-up" style="display:none"></i>
+                                <i class="fas fa-sort-down" style="display:block"></i>
+                            </div>
+                        </th>
                         <th scope="col">姓名</th>
                         <th scope="col">手機</th>
                         <th scope="col">EMAIL</th>
@@ -150,7 +155,7 @@ $page_name = 'data_list'
 
 
 <script>
-    let page = 1;
+   let page = 1;
     let ul_pagi = document.querySelector('.pagination');
 
     let sel_city = document.querySelector('#sel_city');
@@ -163,7 +168,34 @@ $page_name = 'data_list'
     const data_body = document.querySelector('#data_body');
     let tbody = document.querySelector('#table_body');
 
-    console.log(pages_present.length)
+
+
+    var sortway = "DESC"
+
+    var switcher = 0;
+    let sort = document.querySelector('#sort');
+
+    sort.onclick = function() {
+        var tag = sort.querySelectorAll('i');
+        console.log(tag);
+
+        switcher = switcher == 0 ? 1 : 0;
+        console.log(switcher);
+
+        for (var i = 0; i < tag.length; i++) {
+            if (switcher == 0) {
+                tag[0].style.display = 'none';
+                tag[1].style.display = 'block';
+                sortway = "DESC";
+            } else {
+                tag[1].style.display = 'none';
+                tag[0].style.display = 'block';
+                sortway = "ASC";
+            }
+        }
+        console.log(sortway);
+        myHashChange();
+    }
 
 
     const tr_str = `
@@ -253,7 +285,7 @@ $page_name = 'data_list'
 
         // ul_pagi.innerHTML+= page;
 
-        fetch('data_list_api2.php?page=' + page + '&perPage=' + perPage + '&city=' + city + '&keyword=' + keyword)
+        fetch('data_list_api2.php?page=' + page + '&perPage=' + perPage + '&city=' + city + '&keyword=' + keyword + '&sortway=' + sortway)
             .then(res => {
                 console.log(res);
                 return res.json();
@@ -399,6 +431,7 @@ $page_name = 'data_list'
     function score_it(sid) {
         // location.href =;
     }
+
 
     function delete_it(sid) {
         swal({

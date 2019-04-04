@@ -8,6 +8,8 @@ $keyword = isset($_GET['keyword']) ? ($_GET['keyword']) : "";
 
 $city = isset($_GET['city']) ? ($_GET['city']) : "";
 
+$sortway= isset($_GET['sortway']) ? ($_GET['sortway']) : "DESC";
+
 $result = [
     'success' => false,
     'page' => 0,
@@ -19,6 +21,7 @@ $result = [
     'errorMsg' => '',
     'keyword' => $keyword,
     'city' => $city,
+    'sortway' => $sortway,
 ];
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -165,13 +168,13 @@ $result['page'] = $page;
 
 
 
-$sql = sprintf("SELECT * FROM member ORDER BY m_sid  DESC LIMIT %s, %s", ($page - 1) * $per_page, $per_page);
+$sql = sprintf("SELECT * FROM member ORDER BY m_sid  %s LIMIT %s, %s",$sortway ,($page - 1) * $per_page, $per_page);
 $stmt = $pdo->query($sql);
 
 // 所有資料一次拿出來
 
 if (!empty($_GET['city'])) {
-    $sql = sprintf("SELECT * FROM `member` WHERE m_city LIKE ? ORDER BY m_sid DESC LIMIT %s, %s", ($page - 1) * $per_page, $per_page);
+    $sql = sprintf("SELECT * FROM `member` WHERE m_city LIKE ? ORDER BY m_sid  %s LIMIT %s, %s",$sortway ,($page - 1) * $per_page, $per_page);
     $stmt = $pdo->prepare($sql);
     $str_c = "%" . $_GET['city'] . "%";
     $stmt->execute([
@@ -184,7 +187,7 @@ if (!empty($_GET['city'])) {
 
 
 if (!empty($_GET['keyword'])) {
-    $sql = sprintf("SELECT * FROM `member` WHERE m_sid LIKE ? OR m_mobile LIKE ? OR m_name LIKE ? OR m_email LIKE ? OR m_address LIKE ?  OR m_active LIKE ? OR m_city LIKE ? OR m_town LIKE ? ORDER BY m_sid DESC LIMIT %s, %s", ($page - 1) * $per_page, $per_page);
+    $sql = sprintf("SELECT * FROM `member` WHERE m_sid LIKE ? OR m_mobile LIKE ? OR m_name LIKE ? OR m_email LIKE ? OR m_address LIKE ?  OR m_active LIKE ? OR m_city LIKE ? OR m_town LIKE ? ORDER BY m_sid %s LIMIT %s, %s",$sortway ,($page - 1) * $per_page, $per_page);
     $stmt = $pdo->prepare($sql);
     $str = "%" . $_GET['keyword'] . "%";
     $stmt->execute([
@@ -200,7 +203,7 @@ if (!empty($_GET['keyword'])) {
 } ;
 
 if (!empty($_GET['keyword']) && !empty($_GET['city'])) {
-    $sql = sprintf("SELECT * FROM `member` WHERE m_city LIKE ? AND (m_sid LIKE ? OR m_mobile LIKE ? OR m_name LIKE ? OR m_email LIKE ? OR m_address LIKE ? OR m_active LIKE ? OR m_city LIKE ? OR m_town LIKE ?)ORDER BY m_sid DESC LIMIT %s, %s", ($page - 1) * $per_page, $per_page);
+    $sql = sprintf("SELECT * FROM `member` WHERE m_city LIKE ? AND (m_sid LIKE ? OR m_mobile LIKE ? OR m_name LIKE ? OR m_email LIKE ? OR m_address LIKE ? OR m_active LIKE ? OR m_city LIKE ? OR m_town LIKE ?)ORDER BY m_sid %s LIMIT %s, %s",$sortway, ($page - 1) * $per_page, $per_page);
     $stmt = $pdo->prepare($sql);
     $str_c = "%" . $_GET['city'] . "%";
     $str = "%" . $_GET['keyword'] . "%";
