@@ -38,8 +38,8 @@ $page_name = 'data_list'
         <div class="col-lg-10 mx-auto">
 
 
-            <div class="col-6 mx-auto">
-                <select name="sel_city" id="sel_city">
+            <div class="col-6 mx-auto d-flex mt-4 justify-content-around">
+                <select name="sel_city" id="sel_city" class="col-2">
                     <option value="">選擇城市</option>
                     <option value="基隆市">基隆市</option>
                     <option value="台北市">臺北市</option>
@@ -65,19 +65,20 @@ $page_name = 'data_list'
                     <option value="澎湖縣">澎湖縣</option>
                 </select>
 
+                
 
+                <input type="text" class="form-control col-8 mx-auto" id="m_search" name="m_search" placeholder="搜尋" value="">
 
-                <input type="text" class="form-control" id="m_search" name="m_search" placeholder="搜尋" value="">
+           
+
+            
+            <button type="submit" class="btn d-flex mx-auto btn-outline-info search_btn  col-1">搜尋</button>
+            
 
             </div>
 
-            <button type="submit" class="btn d-flex mx-auto btn-outline-info search_btn">搜尋</button>
 
-
-
-
-
-            <select class="pages_present mx-auto d-block my-3">
+            <select class="pages_present mx-auto d-block mt-2 mb-4">
 
                 <option value="5"> 每頁5筆資料</option>
                 <option value="10">每頁10筆資料</option>
@@ -401,15 +402,15 @@ $page_name = 'data_list'
 
     function delete_it(sid) {
         swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                title: "確定要刪除該會員資料嗎?",
+                text: "一旦刪除資料將無法復原!!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
+                    swal("已經成功刪除該會員資料!", {
                         icon: "success",
 
                     }).then((info) => {
@@ -417,7 +418,7 @@ $page_name = 'data_list'
                     });
 
                 } else {
-                    swal("Your imaginary file is safe!");
+                    swal("會員資料完整保留");
                 }
             });
     }
