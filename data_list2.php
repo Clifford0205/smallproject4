@@ -197,6 +197,10 @@ $page_name = 'data_list'
         myHashChange();
     }
 
+    if(location.hash.slice(location.hash.indexOf("sortway") +8,location.hash.indexOf("sortway") +11)=="ASC"){
+        sortway = "ASC";
+    }
+
 
     const tr_str = `
                      <tr>
@@ -269,9 +273,10 @@ $page_name = 'data_list'
 
     
     if (location.hash.indexOf("keyword")!==-1) {
-        searchbar.value=decodeURIComponent(location.hash.slice(location.hash.indexOf("keyword") + 8))
-            
+        searchbar.value=decodeURIComponent(location.hash.slice(location.hash.indexOf("keyword") + 8))         
         }
+
+
 
     //宣告變數:拿到所有頁數
     var num_pagi = "";
@@ -446,7 +451,7 @@ $page_name = 'data_list'
     // }
 
     function switch_it(sid) {
-        location.href = 'data_switch.php?sid=' + sid + '&page=' + page + '&perPage=' + perPage+ '&city=' + city+ '&keyword=' + keyword;
+        location.href = 'data_switch.php?sid=' + sid + '&page=' + page + '&perPage=' + perPage+ '&city=' + city + '&sortway=' + sortway +'&keyword=' + keyword;
         myHashChange();
     }
 

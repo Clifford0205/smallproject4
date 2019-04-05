@@ -19,7 +19,7 @@ $city=$_GET['city'];
 
 $keyword =$_GET['keyword'];
 
-// $sortway=$_GET['sortway'];
+$sortway=$_GET['sortway'];
 
 $temp = explode("#",$_SERVER['HTTP_REFERER'])[0];
 
@@ -27,7 +27,7 @@ echo $temp;
 
 echo "<br>";
 
-$url=$temp."#".$page."&perPage=".$perPage."&city=".$city."&keyword=".$keyword;
+$url=$temp."#".$page."&perPage=".$perPage."&city=".$city."&sortway=".$sortway."&keyword=".$keyword;
 
  echo $url;
 
