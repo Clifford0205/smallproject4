@@ -80,9 +80,9 @@ $page_name = 'data_list'
 
             <select class="pages_present mx-auto d-block mt-2 mb-4">
 
-                <option value="5"> 每頁5筆資料</option>
-                <option value="10">每頁10筆資料</option>
-                <option value="15">每頁15筆資料</option>
+                <option value="20">每頁20筆資料</option>
+                <option value="40">每頁40筆資料</option>
+                <option value="60">每頁60筆資料</option>
 
             </select>
 
@@ -238,19 +238,40 @@ $page_name = 'data_list'
 
 
     for (var i = 0; i < pages_present.length; i++) {
-        if (pages_present[i].value == location.hash.slice(location.hash.indexOf("perPage") + 8)) {
-            console.log("for");
+        if (pages_present[i].value == location.hash.slice(location.hash.indexOf("perPage") + 8,location.hash.indexOf("perPage") + 10)) {
             pages_present[i].selected = true;
             console.log(pages_present[i].selected);
         }
-    }
+    };
+
+    for (var i = 0; i < sel_city.length; i++) {
+        if (sel_city[i].value ==decodeURIComponent(location.hash.slice(location.hash.indexOf("city") + 5,location.hash.indexOf("city") + 32))) {
+            sel_city[i].selected = true;
+            console.log(sel_city[i].selected);
+            
+        }
+    };
+
+
+    
+
+
+   
 
     //宣告變數:下拉式選單裡面的值
     let perPage = pages_present.value;
 
-    let city = sel_city.value;
+     let city = sel_city.value
+   
 
     let keyword = searchbar.value;
+
+
+    
+    if (location.hash.indexOf("keyword")!==-1) {
+        searchbar.value=decodeURIComponent(location.hash.slice(location.hash.indexOf("keyword") + 8))
+            
+        }
 
     //宣告變數:拿到所有頁數
     var num_pagi = "";
@@ -425,7 +446,8 @@ $page_name = 'data_list'
     // }
 
     function switch_it(sid) {
-        location.href = 'data_switch.php?sid=' + sid + "&page=" + page + "&perPage=" + perPage;
+        location.href = 'data_switch.php?sid=' + sid + '&page=' + page + '&perPage=' + perPage+ '&city=' + city+ '&keyword=' + keyword;
+        myHashChange();
     }
 
     function score_it(sid) {
@@ -447,7 +469,7 @@ $page_name = 'data_list'
                         icon: "success",
 
                     }).then((info) => {
-                        location.href = 'data_delete.php?sid=' + sid + "&page=" + page + "&perPage=" + perPage;
+                        location.href = 'data_delete.php?sid=' + sid + "&page=" + page + "&perPage=" + perPage+ '&city=' + city + '&keyword=' + keyword + '&sortway=' + sortway;
                     });
 
                 } else {
