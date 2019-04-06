@@ -15,13 +15,16 @@ $perPage=$_GET['perPage'];
 
 $city=$_GET['city'];
 
+$city=$_GET['city'];
+
 $keyword =$_GET['keyword'];
 
 $sortway=$_GET['sortway'];
 
-$temp = explode("?",$_SERVER['HTTP_REFERER'])[0];
+$temp = explode("#",$_SERVER['HTTP_REFERER'])[0];
 
-$url=$temp."#".$page."&perPage=".$perPage.'&city='.$city.'&keyword='.$keyword.'&sortway='.$sortway;
+$url=$temp."#".$page."&perPage=".$perPage."&city=".$city."&sortway=".$sortway."&keyword=".$keyword;
+
 
 if(isset($_SERVER['HTTP_REFERER'])){
     $goto = $url;

@@ -474,7 +474,7 @@ $page_name = 'data_list'
                         icon: "success",
 
                     }).then((info) => {
-                        location.href = 'data_delete.php?sid=' + sid + "&page=" + page + "&perPage=" + perPage+ '&city=' + city + '&keyword=' + keyword + '&sortway=' + sortway;
+                        location.href = 'data_delete.php?sid='  + sid + '&page=' + page + '&perPage=' + perPage+ '&city=' + city + '&sortway=' + sortway +'&keyword=' + keyword;
                     });
 
                 } else {
