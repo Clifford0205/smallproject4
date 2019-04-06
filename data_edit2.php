@@ -10,7 +10,7 @@ $sql = "SELECT * FROM member WHERE m_sid=$sid";
 $stmt = $pdo->query($sql);
 
 if ($stmt->rowCount() == 0) {
-    header('Location: data_list2.php');
+    header('Location: data_list3.php');
     exit;
 }
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
