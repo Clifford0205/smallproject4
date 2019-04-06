@@ -10,6 +10,10 @@ $page_name = 'data_insert';
         color: red !important;
     }
 
+    body {
+        background-color: #dcdce2;
+    }
+
     .imgbox {
         width: 180px;
         height: 180px;
@@ -28,8 +32,9 @@ $page_name = 'data_insert';
     }
 
     .card{
-        background:radial-gradient(#a7a8bd,#475164);
-        box-shadow: 12px 15px 18px #474747;
+        /* background:radial-gradient(#a7a8bd,#475164);
+        box-shadow: 12px 15px 18px #474747; */
+        background-color: #dcdce2;
        
     }
 </style>
@@ -38,8 +43,7 @@ $page_name = 'data_insert';
     <div class="row">
         <div class="col-lg-8 mx-auto my-5">
 
-            <div id="info_bar" class="alert alert-success" role="alert" style="display: none">
-            </div>
+           
 
             <div class="card border-0">
 
@@ -64,37 +68,37 @@ $page_name = 'data_insert';
 
                         <div class="form-group">
                             <label for="m_name">姓名</label>
-                            <input type="text" class="form-control col-12 rounded-pill" id="m_name" name="m_name" placeholder="" value="">
+                            <input type="text" class="form-control col-12 " id="m_name" name="m_name" placeholder="" value="">
                             <small id="m_nameHelp" class="form-text text-muted"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="m_mobile">手機</label>
-                            <input type="text" class="form-control col-12 rounded-pill" id="m_mobile" name="m_mobile" placeholder="" value="">
+                            <input type="text" class="form-control col-12 " id="m_mobile" name="m_mobile" placeholder="" value="">
                             <small id="m_mobileHelp" class="form-text text-muted"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="m_email">電郵(帳號)</label>
-                            <input type="text" class="form-control col-12 rounded-pill" id="m_email" name="m_email" placeholder="" value="">
+                            <input type="text" class="form-control col-12 " id="m_email" name="m_email" placeholder="" value="">
                             <small id="m_emailHelp" class="form-text text-muted"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="m_password">密碼</label>
-                            <input type="password" class="form-control col-12 rounded-pill" id="m_password" name="m_password" placeholder="" value="">
+                            <input type="password" class="form-control col-12 " id="m_password" name="m_password" placeholder="" value="">
                             <small id="m_passwordHelp" class="form-text text-muted"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="confirm_password">確認密碼</label>
-                            <input type="password" class="form-control col-12 rounded-pill" id="confirm_password" name="confirm_password" placeholder="" value="">
+                            <input type="password" class="form-control col-12 " id="confirm_password" name="confirm_password" placeholder="" value="">
                             <small id="confirm_passwordHelp" class="form-text text-muted"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="m_birthday">生日</label>
-                            <input type="date" class="form-control col-12 rounded-pill" id="m_birthday" name="m_birthday" placeholder="YYYY-MM-DD" value="">
+                            <input type="date" class="form-control col-12 " id="m_birthday" name="m_birthday" placeholder="YYYY-MM-DD" value="">
                             <small id="m_birthdayHelp" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
@@ -108,12 +112,12 @@ $page_name = 'data_insert';
                                 <div class="f4 col-6 pr-0 " data-role="district" >
                                 </div>
                             </div>
-                            <input  id="m_address" name="m_address" type="text" class="f13 address form-control my-3 rounded-pill">
+                            <input  id="m_address" name="m_address" type="text" class="f13 address form-control my-3 ">
 
                             <script>
                                 $("#zipcode3").twzipcode({
                                     "zipcodeIntoDistrict": true,
-                                    "css": ["city form-control rounded-pill", "town form-control rounded-pill"],
+                                    "css": ["city form-control ", "town form-control "],
                                     "countyName": "m_city", // 指定城市 select name
                                     "districtName": "m_town"  // 指定地區 select name
                                 });
@@ -126,12 +130,14 @@ $page_name = 'data_insert';
 
 
                         <div class="d-flex justify-content-around">
-                        <button id="submit_btn" type="submit" class="btn btn-light ">Submit</button>
+                        <button id="submit_btn" type="submit" class="btn btn-info ">Submit</button>
                         <a href="javascript:history.back()" class="btn btn-dark">返回列表</a>
                         </div>
                     </form>
 
                 </div>
+            </div>
+            <div id="info_bar" class="alert alert-success" role="alert" style="display: none">
             </div>
         </div>
     </div>
@@ -259,7 +265,13 @@ $page_name = 'data_insert';
 
                     if (obj.success) {
                         info_bar.className = 'alert alert-success';
-                        info_bar.innerHTML = '資料新增成功';
+                        info_bar.innerHTML = '註冊成功';
+                        swal({
+                            title: "您已經成功註冊",
+                            text: "恭喜您成為我們的會員",
+                            icon: "success",
+                            button: "確定!",
+                        });
                     } else {
                         info_bar.className = 'alert alert-danger';
                         info_bar.innerHTML = obj.errorMsg;
