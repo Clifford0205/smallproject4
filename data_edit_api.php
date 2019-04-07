@@ -99,8 +99,9 @@ if(isset($_POST['m_name']) and !empty($sid)){
                 `m_active`=?,
                 `m_password`=?,
                 `m_city`=?,
-                `m_town`=?,
-                `m_score`=`m_score`+?
+                `m_active`=?,
+                `m_town`=?
+                -- `m_score`=`m_score`+?
                 WHERE `m_sid`=?";
 
     try {
@@ -116,8 +117,9 @@ if(isset($_POST['m_name']) and !empty($sid)){
             true,
             $_POST['m_password'],
             $_POST['m_city'],
+            $_POST['m_active'],
             $_POST['m_town'],
-            $_POST['m_score'],
+            // $_POST['m_score'],
             $sid,
         ]);
 

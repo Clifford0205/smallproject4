@@ -11,7 +11,7 @@ $page_name = 'data_insert';
     }
 
     body {
-        background-color: #dcdce2;
+        /* background-color: #dcdce2; */
     }
 
     .imgbox {
@@ -34,8 +34,20 @@ $page_name = 'data_insert';
     .card{
         /* background:radial-gradient(#a7a8bd,#475164);
         box-shadow: 12px 15px 18px #474747; */
-        background-color: #dcdce2;
+        /* background-color: #dcdce2; */
        
+    }
+
+    #my_file{
+        display: block;
+    }
+
+    #submit_btn{
+        border:1px solid #2addc7;
+    }
+
+    #submit_btn:hover{
+        color:black;
     }
 </style>
 <div class="container">
@@ -130,7 +142,7 @@ $page_name = 'data_insert';
 
 
                         <div class="d-flex justify-content-around">
-                        <button id="submit_btn" type="submit" class="btn btn-info ">Submit</button>
+                        <button id="submit_btn" type="submit" class="btn btn-info" style="background-color:#2addc7">送出資料</button>
                         <a href="javascript:history.back()" class="btn btn-dark">返回列表</a>
                         </div>
                     </form>

@@ -22,8 +22,8 @@ $page_name = 'data_list'
     .page-item.active .page-link {
         z-index: 1;
         color: #fff;
-        background-color: #5d3d21;
-        border-color: #007bff;
+        background-color: #2addc7;
+        border-color: #2addc7;
     }
 
     table tbody img {
@@ -215,7 +215,7 @@ $page_name = 'data_list'
                         <td><%= m_city %> <%= m_town %> <%= m_address %></td>
                         <td><img src="<%= m_photo ==''?'https://images2.imgbox.com/b0/c3/sQxunS2i_o.png':m_photo %>" class="card-img" alt="..."> </td>
 
-                        <td><span>帳號狀態:<a href="javascript: switch_it(<%= m_sid %>)" class="text-warning"> <%=m_active ==0 ?'<i class="fas fa-check"></i>':'<i class="fas fa-ban"></i>' %> </a></td>
+                        <td><span>帳號狀態:<a href="javascript: switch_it(<%= m_sid %>)" class="text-warning"> <%=m_active ==0 ?'<i class="fas fa-check"></i>':'<i class="fas fa-ban"></i>停權' %> </a></td>
                       
                         <td><%= m_score %></td>
 

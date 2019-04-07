@@ -24,10 +24,10 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     body {
-        background-color: #dcdce2;
+        /* background-color: #dcdce2; */
     }
 
-   
+
     .imgbox {
         width: 180px;
         height: 180px;
@@ -48,12 +48,24 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     .card {
         /* background:radial-gradient(#a7a8bd,#475164); */
         /* box-shadow: 12px 15px 18px #474747; */
-        background-color: #dcdce2;
+        /* background-color: #dcdce2; */
 
     }
 
     i {
         font-size: 36px;
+    }
+
+    #my_file {
+        display: block;
+    }
+
+    #submit_btn {
+        border: 1px solid #2addc7;
+    }
+
+    #submit_btn:hover {
+        color: black;
     }
 </style>
 <div class="container">
@@ -61,7 +73,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="col-lg-8 mx-auto my-5">
 
-          
+
 
             <div class="card border-0">
 
@@ -152,7 +164,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                             <label for="m_score">評價</label>
                             <h4><?= $row['m_score'] ?></h4>
 
-                            <input type="radio" id="s-option" name="m_score" value=0 checked="checked">
+                            <!-- <input type="radio" id="s-option" name="m_score" value=0 checked="checked">
                             <label for="s-option">普普通通</label>
 
 
@@ -162,16 +174,32 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                             <input type="radio" id="t-option" name="m_score" value=-1>
                             <label for="t-option"><i class="fas fa-thumbs-down"></i></label>
 
+                            <small id="m_birthdayHelp" class="form-text text-muted"></small> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="m_active">帳號狀態</label>
+                            <select id="limit" name="m_active">
+                                <option value="0" <?= $row['m_active'] ==0?'selected':""?>>開啟權限</option>
+                                <option value="1" <?= $row['m_active'] ==1?'selected':""?>>停止權限</option>
+                            </select>
+
                             <small id="m_birthdayHelp" class="form-text text-muted"></small>
                         </div>
 
+                        <script>
+                            var  limit =document.querySelector('#limit');
+                        </script>
+
+
+
 
                         <div class="d-flex justify-content-around">
-                            <button id="submit_btn" type="submit" class="btn btn-info ">Submit</button>
+                            <button id="submit_btn" type="submit" class="btn btn-info ">確認修改</button>
                             <a href="javascript:history.back()" class="btn btn-dark">返回列表</a>
                         </div>
 
-
+                        
                     </form>
 
                 </div>
