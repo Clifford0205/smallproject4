@@ -95,7 +95,8 @@ $page_name = 'data_list'
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">修改</th>
+                    <th scope="col">個人圖片</th>
+                       
                         <th scope="col">排序
                             <div id="sort">
                                 <i class="fas fa-sort-up" style="display:none"></i>
@@ -106,8 +107,9 @@ $page_name = 'data_list'
                         <th scope="col">手機</th>
                         <th scope="col">EMAIL</th>
                         <th scope="col">地址</th>
-                        <th scope="col">個人圖片</th>
+                        
                         <th scope="col">帳號狀態</th>
+                        <th scope="col">修改</th>
                         <th scope="col">評價</th>
                         <th scope="col">刪除帳號</th>
                     </tr>
@@ -204,18 +206,22 @@ $page_name = 'data_list'
 
     const tr_str = `
                      <tr>
-                        <td>
-                            <a href="data_edit.php?sid=<%= m_sid %>"><i class="fas fa-edit"></i></a>
-                        </td>
+                     <td><img src="<%= m_photo ==''?'https://images2.imgbox.com/b0/c3/sQxunS2i_o.png':m_photo %>" class="card-img" alt="..."> </td>
+
+                       
 
                         <td><%= m_sid %></td>
                         <td><%= m_name %></td>
                         <td><%= m_mobile %></td>
                         <td><%= m_email %></td>
                         <td><%= m_city %> <%= m_town %> <%= m_address %></td>
-                        <td><img src="<%= m_photo ==''?'https://images2.imgbox.com/b0/c3/sQxunS2i_o.png':m_photo %>" class="card-img" alt="..."> </td>
+                      
 
                         <td><span>帳號狀態:<a href="javascript: switch_it(<%= m_sid %>)" class="text-warning"> <%=m_active ==0 ?'<i class="fas fa-check"></i>':'<i class="fas fa-ban"></i>停權' %> </a></td>
+
+                        <td>
+                            <a href="data_edit.php?sid=<%= m_sid %>"><i class="fas fa-edit"></i></a>
+                        </td>
                       
                         <td><%= m_score %></td>
 
