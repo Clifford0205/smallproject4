@@ -19,9 +19,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 <?php include __DIR__. '/__html_head.php';  ?>
 <?php include __DIR__. '/__navbar.php';  ?>
 <style>
-   .form-group small {
+     .form-group small {
         color: red !important;
     }
+
+    body {
+        /* background-color: #dcdce2; */
+    }
+
 
     .imgbox {
         width: 180px;
@@ -33,17 +38,34 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
         background-size: cover;
     }
 
-    h5{
+    h5 {
         /* background:linear-gradient(#000000,#FFFFFF) */
-        margin:-20px;
-        background:#1c2938;
-        color:#FFFFFF;
+        margin: -20px;
+        background: #1c2938;
+        color: #FFFFFF;
     }
 
-    .card{
-        background:radial-gradient(#a7a8bd,#475164);
-        box-shadow: 12px 15px 18px #474747;
-       
+    .card {
+        /* background:radial-gradient(#a7a8bd,#475164); */
+        /* box-shadow: 12px 15px 18px #474747; */
+        /* background-color: #dcdce2; */
+
+    }
+
+    i {
+        font-size: 36px;
+    }
+
+    #my_file {
+        display: block;
+    }
+
+    #submit_btn {
+        border: 1px solid #2addc7;
+    }
+
+    #submit_btn:hover {
+        color: black;
     }
 </style>
 <div class="container">
@@ -67,7 +89,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                         <div class="form-group">
                             <div class="imgbox ">
-                                <img id="myimg readonly="readonly"  " src="<?= $row['m_photo'] ?>" alt="" width="100%" height="100%" style="object-fit: cover ">
+                                <img id="myimg" readonly="readonly"  src="<?= $row['m_photo'] ?>" alt="" width="100%" height="100%" style="object-fit: cover ">
                             </div>
                             <br>
                             <input type="file" name="my_file" id="my_file" class="">

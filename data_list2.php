@@ -30,6 +30,15 @@ $page_name = 'data_list'
         width: 100px !important;
         height: 100px;
     }
+
+    #swal2-content{
+        text-align: left !important;
+        padding-left: 8%;
+    }
+
+    .swal2-popup .swal2-styled.swal2-confirm{
+        background-color:#2addc7;
+    }
 </style>
 <div class="container-fluid">
 
@@ -65,15 +74,15 @@ $page_name = 'data_list'
                     <option value="澎湖縣">澎湖縣</option>
                 </select>
 
-                
+
 
                 <input type="text" class="form-control col-8 mx-auto" id="m_search" name="m_search" placeholder="搜尋" value="">
 
-           
 
-            
-            <button type="submit" class="btn d-flex mx-auto btn-outline-info search_btn ">搜尋</button>
-            
+
+
+                <button type="submit" class="btn d-flex mx-auto btn-outline-info search_btn ">搜尋</button>
+
 
             </div>
 
@@ -95,8 +104,8 @@ $page_name = 'data_list'
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                    <th scope="col">個人圖片</th>
-                       
+                        <th scope="col">個人圖片</th>
+
                         <th scope="col">排序
                             <div id="sort">
                                 <i class="fas fa-sort-up" style="display:none"></i>
@@ -107,15 +116,15 @@ $page_name = 'data_list'
                         <th scope="col">手機</th>
                         <th scope="col">EMAIL</th>
                         <th scope="col">地址</th>
-                        
                         <th scope="col">帳號狀態</th>
+                        <th scope="col">查看</th>
                         <th scope="col">修改</th>
                         <th scope="col">評價</th>
                         <th scope="col">刪除帳號</th>
                     </tr>
                 </thead>
                 <tbody id="table_body">
-                    <?php 
+                    <?php
 
 
                     ?>
@@ -129,7 +138,7 @@ $page_name = 'data_list'
 
     <div class="row">
         <div class="col-lg-12">
-            <ul class="pagination pagination-sm justify-content-center"><?php 
+            <ul class="pagination pagination-sm justify-content-center"><?php
 
 
 
@@ -157,7 +166,7 @@ $page_name = 'data_list'
 
 
 <script>
-   let page = 1;
+    let page = 1;
     let ul_pagi = document.querySelector('.pagination');
 
     let sel_city = document.querySelector('#sel_city');
@@ -199,7 +208,7 @@ $page_name = 'data_list'
         myHashChange();
     }
 
-    if(location.hash.slice(location.hash.indexOf("sortway") +8,location.hash.indexOf("sortway") +11)=="ASC"){
+    if (location.hash.slice(location.hash.indexOf("sortway") + 8, location.hash.indexOf("sortway") + 11) == "ASC") {
         sortway = "ASC";
     }
 
@@ -218,6 +227,10 @@ $page_name = 'data_list'
                       
 
                         <td><span>帳號狀態:<a href="javascript: switch_it(<%= m_sid %>)" class="text-warning"> <%=m_active =="正常" ?'<i class="fas fa-check"></i>':'<i class="fas fa-ban"></i>停權' %> </a></td>
+
+                          <td>
+                            <a href="javascript: read_it('<%= m_photo ==''?'https://images2.imgbox.com/b0/c3/sQxunS2i_o.png':m_photo %>','<%= m_name  %>','<%= m_mobile %>','<%= m_email %>','<%= m_birthday %>','<%= m_city %>','<%= m_town %>','<%= m_address %>')"><i class="fas fa-eye"></i></a>
+                        </td>
 
                         <td>
                             <a href="data_edit.php?sid=<%= m_sid %>"><i class="fas fa-edit"></i></a>
@@ -248,39 +261,39 @@ $page_name = 'data_list'
 
 
     for (var i = 0; i < pages_present.length; i++) {
-        if (pages_present[i].value == location.hash.slice(location.hash.indexOf("perPage") + 8,location.hash.indexOf("perPage") + 10)) {
+        if (pages_present[i].value == location.hash.slice(location.hash.indexOf("perPage") + 8, location.hash.indexOf("perPage") + 10)) {
             pages_present[i].selected = true;
             console.log(pages_present[i].selected);
         }
     };
 
     for (var i = 0; i < sel_city.length; i++) {
-        if (sel_city[i].value ==decodeURIComponent(location.hash.slice(location.hash.indexOf("city") + 5,location.hash.indexOf("city") + 32))) {
+        if (sel_city[i].value == decodeURIComponent(location.hash.slice(location.hash.indexOf("city") + 5, location.hash.indexOf("city") + 32))) {
             sel_city[i].selected = true;
             console.log(sel_city[i].selected);
-            
+
         }
     };
 
 
-    
 
 
-   
+
+
 
     //宣告變數:下拉式選單裡面的值
     let perPage = pages_present.value;
 
-     let city = sel_city.value
-   
+    let city = sel_city.value
+
 
     let keyword = searchbar.value;
 
 
-    
-    if (location.hash.indexOf("keyword")!==-1) {
-        searchbar.value=decodeURIComponent(location.hash.slice(location.hash.indexOf("keyword") + 8))         
-        }
+
+    if (location.hash.indexOf("keyword") !== -1) {
+        searchbar.value = decodeURIComponent(location.hash.slice(location.hash.indexOf("keyword") + 8))
+    }
 
 
 
@@ -383,8 +396,11 @@ $page_name = 'data_list'
 
 
 
+
             });
     };
+
+
 
 
 
@@ -457,13 +473,36 @@ $page_name = 'data_list'
     // }
 
     function switch_it(sid) {
-        location.href = 'data_switch.php?sid=' + sid + '&page=' + page + '&perPage=' + perPage+ '&city=' + city + '&sortway=' + sortway +'&keyword=' + keyword;
+        location.href = 'data_switch.php?sid=' + sid + '&page=' + page + '&perPage=' + perPage + '&city=' + city + '&sortway=' + sortway + '&keyword=' + keyword;
         myHashChange();
     }
 
     function score_it(sid) {
         // location.href =;
     }
+
+
+
+    function read_it(photo, name,mobile,email,birthday,city,town,address) {
+        Swal.fire({
+            title: `<img src=${photo}>`,
+            // type: 'info',
+            html: `<h2>姓名:${name}</u></h2>
+                    <p>手機:${mobile}</p>
+                    <p>信箱:${email}</p>
+                    <p>生日:${birthday}</p>
+                    <p>地址:${city}${town}${address}</p>`,            
+            showCloseButton: true,
+            // showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText: '確認',
+            confirmButtonAriaLabel: 'Thumbs up, great!',
+            cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
+            cancelButtonAriaLabel: 'Thumbs down',
+        })
+    }
+
+
 
 
     function delete_it(sid) {
@@ -480,7 +519,7 @@ $page_name = 'data_list'
                         icon: "success",
 
                     }).then((info) => {
-                        location.href = 'data_delete.php?sid='  + sid + '&page=' + page + '&perPage=' + perPage+ '&city=' + city + '&sortway=' + sortway +'&keyword=' + keyword;
+                        location.href = 'data_delete.php?sid=' + sid + '&page=' + page + '&perPage=' + perPage + '&city=' + city + '&sortway=' + sortway + '&keyword=' + keyword;
                     });
 
                 } else {
@@ -491,4 +530,4 @@ $page_name = 'data_list'
 </script>
 
 
-<?php include __DIR__ . '/__html_foot.php';  ?> 
+<?php include __DIR__ . '/__html_foot.php';  ?>
