@@ -39,7 +39,7 @@ $result['totalRows'] = intval($total_rows);
 
 
 
-if (isset($_GET['city'])) {
+if (!empty($_GET['city'])) {
     $t_sql = "SELECT * FROM `member` WHERE m_city LIKE ?";
     $t_stmt = $pdo->prepare($t_sql);
     $str_c = "%" . $_GET['city'] . "%";

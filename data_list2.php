@@ -217,7 +217,7 @@ $page_name = 'data_list'
                         <td><%= m_city %> <%= m_town %> <%= m_address %></td>
                       
 
-                        <td><span>帳號狀態:<a href="javascript: switch_it(<%= m_sid %>)" class="text-warning"> <%=m_active ==0 ?'<i class="fas fa-check"></i>':'<i class="fas fa-ban"></i>停權' %> </a></td>
+                        <td><span>帳號狀態:<a href="javascript: switch_it(<%= m_sid %>)" class="text-warning"> <%=m_active =="正常" ?'<i class="fas fa-check"></i>':'<i class="fas fa-ban"></i>停權' %> </a></td>
 
                         <td>
                             <a href="data_edit.php?sid=<%= m_sid %>"><i class="fas fa-edit"></i></a>
